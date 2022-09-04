@@ -5,9 +5,10 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     //Váriaveis
+    [SerializeField] float Speed;
+   
     Rigidbody2D MyRb;
     Vector2 Movement;
-   [SerializeField] float Speed = 1000;
 
     private void Awake()
     {
@@ -15,6 +16,11 @@ public class PlayerMovement : MonoBehaviour
         {
             MyRb = GetComponent<Rigidbody2D>();
         }
+    }
+
+    private void Start()
+    {
+        SetSpeed(350);
     }
     private void Update()
     {
@@ -24,7 +30,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        MyRb.velocity = Movement * Speed * Time.fixedDeltaTime;
+      MyRb.velocity = Movement * Speed * Time.fixedDeltaTime;
     }
 
     //Métodos
@@ -36,7 +42,4 @@ public class PlayerMovement : MonoBehaviour
     {
         return Speed;
     }
-
-
-
 }
