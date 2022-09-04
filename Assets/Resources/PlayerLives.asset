@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: PlayerLives
   m_EditorClassIdentifier: 
   Score: 0
-  Lives: 0
+  Lives: 100

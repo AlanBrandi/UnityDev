@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class HealthSystem : MonoBehaviour
 {
-   [SerializeField] int MaxLife;
-
+   [SerializeField] int CurrentLife;
+    int MaxLife;
     GameData_SO PlayerLives;
     public bool DamageHit;
 
@@ -15,9 +15,20 @@ public class HealthSystem : MonoBehaviour
     }
     private void Start()
     {
+        PlayerLives = GameManager.Instance.playerLives;
         setLife(MaxLife);
         PlayerLives.Lives = MaxLife;
     }
+
+    private void Update()
+    {
+        CurrentLife = PlayerLives.Lives;
+        if(PlayerLives.Lives <= 0)
+        {
+            Destroy(gameObject);
+        }
+    }
+
     //----------------------Métodos----------------------------
 
     //Encapsulamento
@@ -32,11 +43,21 @@ public class HealthSystem : MonoBehaviour
     //----------------------------
     public void Damage(int damage)
     {
-        PlayerLives.Lives -= damage;
-        DamageHit = true;
+        if(DamageHit == false)
+        {
+            PlayerLives.Lives -= damage;
+            DamageHit = true;
+            Invoke("InvincibilityOff", 1f);
+        }
     }
     public void Healing(int healValue)
     {
         PlayerLives.Lives += healValue;
+    }
+
+    //-----------------------------
+    public void InvincibilityOff()
+    {
+        DamageHit = false;
     }
 }
