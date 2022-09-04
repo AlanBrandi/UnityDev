@@ -6,8 +6,8 @@ public class HealthSystem : MonoBehaviour
 {
    [SerializeField] int CurrentLife;
     int MaxLife;
-    GameData_SO PlayerLives;
     public bool DamageHit;
+    GameData_SO PlayerLives;
 
     private void Awake()
     {
@@ -25,6 +25,7 @@ public class HealthSystem : MonoBehaviour
         CurrentLife = PlayerLives.Lives;
         if(PlayerLives.Lives <= 0)
         {
+           //add FX
             Destroy(gameObject);
         }
     }

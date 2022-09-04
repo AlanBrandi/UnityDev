@@ -7,14 +7,20 @@ public class PlayerMovement : MonoBehaviour
     //Váriaveis
     [SerializeField] float Speed;
    
-    Rigidbody2D MyRb;
     Vector2 Movement;
+
+    Rigidbody2D MyRb;
+    Animator MyAnimator;
 
     private void Awake()
     {
         if(MyRb == null)
         {
-            MyRb = GetComponent<Rigidbody2D>();
+            MyRb = GetComponentInChildren<Rigidbody2D>();
+        }
+        if (MyAnimator == null)
+        {
+            MyAnimator = GetComponentInChildren<Animator>();
         }
     }
 
@@ -26,11 +32,22 @@ public class PlayerMovement : MonoBehaviour
     {
         Movement.x = Input.GetAxisRaw("Horizontal");
         Movement.y = Input.GetAxisRaw("Vertical");
+        MyAnimator.SetFloat("Speed", MyRb.velocity.magnitude);
     }
 
     private void FixedUpdate()
     {
-      MyRb.velocity = Movement * Speed * Time.fixedDeltaTime;
+       MyRb.velocity = Movement * Speed * Time.fixedDeltaTime;
+
+        if (Movement.x > 0)
+        {
+            MyRb.gameObject.transform.rotation = Quaternion.Euler(0, 0, 0);
+
+        }
+        else if (Movement.x < 0)
+        {
+            MyRb.gameObject.transform.rotation = Quaternion.Euler(0, -180, 0);
+        }
     }
 
     //Métodos

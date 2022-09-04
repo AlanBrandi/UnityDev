@@ -9,7 +9,7 @@ public class DamageAreaTest : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            collision.GetComponent<HealthSystem>().Damage(DamageValue);
+            collision.GetComponentInParent<HealthSystem>().Damage(DamageValue);
         }
     }
 }
