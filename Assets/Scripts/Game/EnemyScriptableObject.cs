@@ -12,4 +12,5 @@ public class EnemyScriptableObject : ScriptableObject
     public int HitDamage = 50;
     public Material FlashMaterial;
     public GameObject DeathEffect;
+    public GameObject Projectile;
 }

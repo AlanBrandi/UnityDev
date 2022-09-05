@@ -4,10 +4,19 @@ using UnityEngine;
 
 public class HealthSystem : MonoBehaviour
 {
-   [SerializeField] int CurrentLife;
-    int MaxLife;
-    public bool DamageHit;
+    [Header("LifeMetris")]
+    [SerializeField] int CurrentLife;
+    [SerializeField] int MaxLife;
+    
+    bool DamageHit;
     GameData_SO PlayerLives;
+
+    [Header("Fx")]
+    public GameObject PlayerHit;
+    public GameObject PlayerDeath;
+
+    [Header("Components")]
+    public GameObject Bengala;
 
     private void Awake()
     {
@@ -23,9 +32,10 @@ public class HealthSystem : MonoBehaviour
     private void Update()
     {
         CurrentLife = PlayerLives.Lives;
+
         if(PlayerLives.Lives <= 0)
         {
-           //add FX
+            Instantiate(PlayerDeath, GameObject.Find("Player").transform.position, Quaternion.identity);
             Destroy(gameObject);
         }
     }
@@ -46,8 +56,11 @@ public class HealthSystem : MonoBehaviour
     {
         if(DamageHit == false)
         {
+            gameObject.GetComponentInChildren<SpriteRenderer>().color = new Color(1, 1, 1, .7f);
+            Bengala.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, .7f);
             PlayerLives.Lives -= damage;
             DamageHit = true;
+            Instantiate(PlayerHit, GameObject.Find("Player").transform.position, Quaternion.identity);
             Invoke("InvincibilityOff", 1f);
         }
     }
@@ -60,5 +73,7 @@ public class HealthSystem : MonoBehaviour
     public void InvincibilityOff()
     {
         DamageHit = false;
+        gameObject.GetComponentInChildren<SpriteRenderer>().color = new Color(1, 1, 1, 1f);
+        Bengala.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1f);
     }
 }

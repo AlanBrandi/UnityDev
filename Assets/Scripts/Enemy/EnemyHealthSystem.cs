@@ -31,12 +31,7 @@ public class EnemyHealthSystem : MonoBehaviour
         HealthBar.value = Enemy.GetLife();
         if (Enemy.GetLife() <= 0)
         {
-            //efeito
-            //som
-            //add pontuação
-            //add contagem de inimigo.
-            Instantiate(DeathEffect, gameObject.transform.position, Quaternion.identity);
-            Destroy(gameObject);
+            Die();
         }
     }
     //-----------------Método-------------------------
@@ -53,12 +48,17 @@ public class EnemyHealthSystem : MonoBehaviour
         gameObject.GetComponent<SpriteRenderer>().material = DefaultMaterial;
     }
 
+    public void Die()
+    {
+        Instantiate(DeathEffect, gameObject.transform.position, Quaternion.identity);
+        Destroy(gameObject);
+    }
     //-----------------Colisão------------------------
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
         {
-            collision.GetComponent<HealthSystem>().Damage(Enemy.GetHitDamage());
+            collision.GetComponentInParent<HealthSystem>().Damage(Enemy.GetHitDamage());
         }
     }
 }
