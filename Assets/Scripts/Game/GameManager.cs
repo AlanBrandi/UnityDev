@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -35,6 +36,12 @@ public class GameManager : MonoBehaviour
 
         playerLives = Resources.Load("PlayerLives") as GameData_SO;
         DontDestroyOnLoad(gameObject);
+    }
+
+
+    public void ChanceScene(string SceneName)
+    {
+        SceneManager.LoadScene(SceneName);
     }
 
 }

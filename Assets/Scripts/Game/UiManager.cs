@@ -1,18 +1,47 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UiManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    #region Singleton
+    public static UiManager Instance;
+    private void Awake()
     {
-        
+        if (!Instance)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(this.gameObject);
+        }
+    }
+    #endregion
+
+    Slider HealthSlider;
+    GameObject Player;
+    GameObject DeathPanel;
+    GameObject HealthBar;
+
+    private void Start()
+    {
+        Player = GameObject.FindGameObjectWithTag("Player");
+        HealthSlider = GetComponentInChildren<Slider>();
+        DeathPanel = GameObject.Find("DeathPanel");
+        HealthBar = GameObject.Find("HealthBar");
+        DeathPanel.SetActive(false);
+        HealthBar.SetActive(true);
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        
+        HealthSlider.value = Player.gameObject.GetComponentInParent<HealthSystem>().GetLife();
+        if (Player.gameObject.GetComponentInParent<HealthSystem>().GetLife() <= 0)
+        {
+            HealthBar.SetActive(false);
+            DeathPanel.SetActive(true);
+        }
     }
 }
