@@ -30,13 +30,16 @@ public class FollowMouse : MonoBehaviour
                 transform.localRotation = Quaternion.Euler(180, 180, -rotationZ);
             }
         }
-        if(difference.x > 0)
+        if (Player.GetComponent<Rigidbody2D>().velocity.magnitude == 0)
         {
-            Player.transform.rotation = Quaternion.Euler(0, 0, 0);
-        }
-        else if(difference.x < 0)
-        {
-            Player.transform.rotation = Quaternion.Euler(0, -180, 0);
+            if (difference.x > 0)
+            {
+                Player.transform.rotation = Quaternion.Euler(0, 0, 0);
+            }
+            else if (difference.x < 0)
+            {
+                Player.transform.rotation = Quaternion.Euler(0, -180, 0);
+            }
         }
     }
 
