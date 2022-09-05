@@ -5,10 +5,11 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     public float InitialSpeed;
-    AudioSource FireballSound;
+    public int DamageHit = 25;
     float Speed;
-    [SerializeField] Vector3 foward;
+
     Rigidbody2D RbBullet;
+    AudioSource FireballSound;
 
     private void Start()
     {
@@ -23,7 +24,7 @@ public class Bullet : MonoBehaviour
     {
         RbBullet.velocity = transform.right * Speed;
     }
-
+    //-------------------Encapsulamento----------------
     public void SetSpeed(float speed)
     {
         Speed = speed;
@@ -32,6 +33,26 @@ public class Bullet : MonoBehaviour
     {
         return Speed;
     }
+    //-------------------------------------------------
+
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+       string HitTag = collision.tag;
+
+        switch (HitTag)
+        {
+            case "Enemy":
+                collision.GetComponent<EnemyHealthSystem>().Damage(DamageHit);
+                Destroy(gameObject);
+                break;
+            case "Wall":
+                //efeito
+                //som
+                break;
+        }
+    }
+
 
     //-------------------Métodos----------------------
 
@@ -39,9 +60,4 @@ public class Bullet : MonoBehaviour
     {
         Destroy(gameObject);
     }
-    //Hit Enemy
-    //AddForce
-    //FX
-    //Audio
-    //Dano
 }

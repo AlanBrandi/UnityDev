@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b4e008bde4dcb14b9c97595ab8e88e1, type: 3}
+  m_Name: ShooterEnemy
+  m_EditorClassIdentifier: 
+  Life: 100
+  Speed: 10
+  StoppingDistance: 20
+  RetreatDistance: 10
+  HitDamage: 50
+  FlashMaterial: {fileID: 2100000, guid: 57290392576120e44849ff8bcf5c92c6, type: 2}
+  DeathEffect: {fileID: 100004, guid: 7867af58a6ec48846ae807eb4022fbaa, type: 3}
