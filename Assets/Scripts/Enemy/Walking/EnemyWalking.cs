@@ -16,21 +16,24 @@ public class EnemyWalking : MonoBehaviour
 
     Transform Player;
     Animator EnemyAnimator;
+    Rigidbody2D MyRb;
 
-    
     private void Start()
     {
         EnemyObject = GetComponent<EnemyScript>().EnemyBasics;
         EnemyAnimator = GetComponentInParent<Animator>();
+        MyRb = GetComponent<Rigidbody2D>();
         ConfigureEnemy();
     }
     private void Update()
     {
         Player = GameObject.Find("Player").transform;
+        var directionToPlayer = Player.transform.position - transform.position;
+        directionToPlayer.Normalize();
 
-        if (Vector2.Distance(transform.position, Player.position) > StoppingDistance)
+        if (Vector2.Distance(transform.position, Player.position) > StoppingDistance && Vector2.Distance(transform.position, Player.position) < 15)
         {
-            transform.position = Vector2.MoveTowards(transform.position, Player.position, Speed * Time.deltaTime);
+            MyRb.velocity = directionToPlayer * Speed * Time.fixedDeltaTime;
             EnemyAnimator.SetBool("IsWalking", true);
         }
         else if (Vector2.Distance(transform.position, Player.position) < StoppingDistance && Vector2.Distance(transform.position, Player.position) > RetreatDistance)
@@ -40,7 +43,7 @@ public class EnemyWalking : MonoBehaviour
         }
         else
         {
-            transform.position = this.transform.position;
+            MyRb.velocity = directionToPlayer * -Speed * Time.fixedDeltaTime;
             EnemyAnimator.SetBool("IsWalking", false);
         }
     }

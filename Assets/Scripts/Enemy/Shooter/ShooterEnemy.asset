@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: ShooterEnemy
   m_EditorClassIdentifier: 
   Life: 100
-  Speed: 1
+  Speed: 100
   StoppingDistance: 5
   RetreatDistance: 3
   HitDamage: 20

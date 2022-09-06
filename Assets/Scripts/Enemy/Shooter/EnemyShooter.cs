@@ -22,6 +22,7 @@ public class EnemyShooter : MonoBehaviour
     bool CanShoot = false;
     //-----------------------------------------
 
+    Rigidbody2D MyRb;
     Transform Player;
     Animator EnemyAnimator;
     
@@ -33,15 +34,18 @@ public class EnemyShooter : MonoBehaviour
         CanShoot = false;
         EnemyAudio = GetComponentInChildren<AudioSource>();
         TimeBtwShots = StartTimeBtwShots;
+        MyRb = GetComponent<Rigidbody2D>();
         ConfigureEnemy();
     }
     private void Update()
     {
         Player = GameObject.Find("Player").transform;
 
-
         var directionToPlayer = Player.transform.position - transform.position;
         var projectionOnRight = Vector3.Dot(directionToPlayer, transform.right);
+        directionToPlayer.Normalize();
+
+        Vector3 dir = (Player.position - gameObject.transform.position).normalized;
 
         if (projectionOnRight > 0)
         { 
@@ -53,9 +57,9 @@ public class EnemyShooter : MonoBehaviour
         }
         //----------------------------------------------------------
 
-        if (Vector2.Distance(transform.position, Player.position) > StoppingDistance)
+        if (Vector2.Distance(transform.position, Player.position) > StoppingDistance && Vector2.Distance(transform.position, Player.position) < 20)
         {
-            transform.position = Vector2.MoveTowards(transform.position, Player.position, Speed * Time.deltaTime);
+            MyRb.velocity = directionToPlayer * Speed * Time.fixedDeltaTime;
             EnemyAnimator.SetBool("IsWalking", true);
         }
         else if(Vector2.Distance(transform.position, Player.position) < StoppingDistance && Vector2.Distance(transform.position, Player.position) > RetreatDistance)
@@ -66,7 +70,7 @@ public class EnemyShooter : MonoBehaviour
         }
         else if (Vector2.Distance(transform.position, Player.position) < RetreatDistance)
         {
-            transform.position = Vector2.MoveTowards(transform.position, Player.position, -Speed * Time.deltaTime);
+            MyRb.velocity = directionToPlayer * -Speed * Time.fixedDeltaTime;
             EnemyAnimator.SetBool("IsWalking", true);
         }
         else

@@ -10,6 +10,7 @@ TagManager:
   - FxTemporaire
   - Projectile
   - UiManager
+  - Object
   layers:
   - Default
   - TransparentFX
@@ -20,8 +21,8 @@ TagManager:
   - Player
   - Enemy
   - Bullet
-  - 
-  - 
+  - EnemyWall
+  - Wall
   - 
   - 
   - 

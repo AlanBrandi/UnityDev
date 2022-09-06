@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 1128171841980499188}
   - component: {fileID: 1128171841980499191}
   - component: {fileID: 1128171841980499190}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: cogumelo
-  m_TagString: Enemy
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -125,5 +125,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MinDistance: 4
-  EnemyPrefab: {fileID: 6891978449263041310, guid: ea424f4fc24aac04995a102735eecf9c, type: 3}
+  EnemyPrefab: {fileID: 3080354141102760174, guid: a72f8b186c92b7b44a1973ec210479b4, type: 3}
   Effect: {fileID: 1965343156803978, guid: aa8d6482d70a23445b4b2a928ed1b845, type: 3}

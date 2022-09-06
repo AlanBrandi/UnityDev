@@ -36,4 +36,15 @@ public class GameManager : MonoBehaviour
         playerLives = Resources.Load("PlayerLives") as GameData_SO;
         DontDestroyOnLoad(gameObject);
     }
+
+    int DeadEnemyCount = 0;
+
+    public void SetDeadCount()
+    {
+        DeadEnemyCount++;
+    }
+    public int GetDeadCount()
+    {
+        return DeadEnemyCount;
+    }
 }

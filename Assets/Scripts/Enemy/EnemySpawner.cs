@@ -25,7 +25,7 @@ public class EnemySpawner : MonoBehaviour
     }
     private void Update()
     {
-        if (Time.time > NextSpawn && EnemyCount <= MaxEnemy)
+        if (Time.time > NextSpawn && EnemyCount < MaxEnemy)
         {
             NextSpawn = Time.time + SpawnRate;
             randX = Random.Range(-0.5f, (ScaleX - 4));
@@ -33,6 +33,10 @@ public class EnemySpawner : MonoBehaviour
             WhereToSpawn = new Vector2((where.position.x + randX), (where.position.y + randY));
             Instantiate(Enemy, WhereToSpawn, Quaternion.identity);
             EnemyCount++;
+        }
+        if(EnemyCount == MaxEnemy)
+        {
+            Destroy(gameObject);
         }
     }
 }

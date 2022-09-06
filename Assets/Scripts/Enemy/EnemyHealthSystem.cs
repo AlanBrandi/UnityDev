@@ -51,7 +51,8 @@ public class EnemyHealthSystem : MonoBehaviour
     public void Die()
     {
         Instantiate(DeathEffect, gameObject.transform.position, Quaternion.identity);
-        Destroy(gameObject);
+        GameManager.Instance.SetDeadCount();
+        Destroy(GetComponentInParent<Transform>().gameObject);
     }
     //-----------------Colisão------------------------
     private void OnTriggerEnter2D(Collider2D collision)

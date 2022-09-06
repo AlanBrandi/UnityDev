@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: WalkingEnemy
   m_EditorClassIdentifier: 
   Life: 100
-  Speed: 2
+  Speed: 450
   StoppingDistance: 0.5
   RetreatDistance: 0.4
   HitDamage: 20
