@@ -9,6 +9,7 @@ TagManager:
   - Enemy
   - FxTemporaire
   - Projectile
+  - UiManager
   layers:
   - Default
   - TransparentFX

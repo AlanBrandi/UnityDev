@@ -16,6 +16,7 @@ MonoBehaviour:
   Speed: 2
   StoppingDistance: 0.5
   RetreatDistance: 0.4
-  HitDamage: 25
+  HitDamage: 20
   FlashMaterial: {fileID: 2100000, guid: 57290392576120e44849ff8bcf5c92c6, type: 2}
   DeathEffect: {fileID: 100004, guid: 7867af58a6ec48846ae807eb4022fbaa, type: 3}
+  Projectile: {fileID: 0}

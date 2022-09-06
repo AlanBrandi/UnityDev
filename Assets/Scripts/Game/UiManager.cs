@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class UiManager : MonoBehaviour
 {
@@ -24,6 +25,7 @@ public class UiManager : MonoBehaviour
     GameObject Player;
     GameObject DeathPanel;
     GameObject HealthBar;
+    string CurrentScene;
 
     private void Start()
     {
@@ -33,6 +35,7 @@ public class UiManager : MonoBehaviour
         HealthBar = GameObject.Find("HealthBar");
         DeathPanel.SetActive(false);
         HealthBar.SetActive(true);
+        CurrentScene = SceneManager.GetActiveScene().name;
     }
 
     private void Update()
@@ -44,4 +47,17 @@ public class UiManager : MonoBehaviour
             DeathPanel.SetActive(true);
         }
     }
+
+    //--------------Método-----------------
+
+    public void ChanceScene(string SceneName)
+    {
+        SceneManager.LoadScene(SceneName);
+    }
+    
+    public void TryAgain()
+    {
+        SceneManager.LoadScene(CurrentScene);
+    }
+
 }

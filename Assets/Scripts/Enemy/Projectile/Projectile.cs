@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
-    int Damage = 25;
+    int Damage = 20;
     float Speed = 650;
     Transform Player;
     Vector2 Target;
@@ -28,6 +28,7 @@ public class Projectile : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             collision.GetComponentInParent<HealthSystem>().Damage(Damage);
+            DestroyProjectile();
         }
     }
 
