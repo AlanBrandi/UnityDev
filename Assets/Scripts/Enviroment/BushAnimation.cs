@@ -5,9 +5,10 @@ using UnityEngine;
 public class BushAnimation : MonoBehaviour
 {
     Animator animator;
-
+    AudioSource audioSource;
     private void Start()
     {
+        audioSource = GetComponent<AudioSource>();
         animator = GetComponent<Animator>();
     }
 
@@ -16,6 +17,7 @@ public class BushAnimation : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             animator.SetBool("IsInside", true);
+            audioSource.Play();
         }
     }
     private void OnTriggerExit2D(Collider2D collision)
@@ -23,6 +25,7 @@ public class BushAnimation : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             animator.SetBool("IsInside", false);
+            audioSource.Stop();
         }
     }
 }

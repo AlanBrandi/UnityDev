@@ -22,6 +22,7 @@ public class GameManager : MonoBehaviour
 
     [HideInInspector] public GameData_SO playerLives;
 
+
     private void Awake()
     {
         if (!instance)
