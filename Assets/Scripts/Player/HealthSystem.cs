@@ -66,7 +66,14 @@ public class HealthSystem : MonoBehaviour
     }
     public void Healing(int healValue)
     {
-        PlayerLives.Lives += healValue;
+        if((PlayerLives.Lives + healValue) > 100)
+        {
+            PlayerLives.Lives = 100;
+        }
+        else
+        {
+            PlayerLives.Lives += healValue;
+        }
     }
 
     //-----------------------------

@@ -44,7 +44,6 @@ public class EnemyWalkingSpawner : MonoBehaviour
         playSound.PlayTheSound();
         Instantiate(EnemyPrefab, transform.position, Quaternion.identity);
         Instantiate(Effect, transform.position, Quaternion.identity);
-        spriteRenderer.enabled = false;
         Destroy(gameObject);
     }
 }

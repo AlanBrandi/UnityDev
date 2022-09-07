@@ -63,7 +63,7 @@ public class EnemyWalking : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            gameObject.GetComponent<EnemyHealthSystem>().Die();
+            gameObject.GetComponent<EnemyHealthSystem>().DieColission();
         }
     }
 }
