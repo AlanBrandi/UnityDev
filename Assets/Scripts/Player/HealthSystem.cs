@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class HealthSystem : MonoBehaviour
 {
-    [Header("LifeMetris")]
+    [Header("LifeMetris - READ ONLY")]
     [SerializeField] int CurrentLife;
     [SerializeField] int MaxLife;
     

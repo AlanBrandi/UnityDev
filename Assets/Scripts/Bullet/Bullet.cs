@@ -47,8 +47,7 @@ public class Bullet : MonoBehaviour
                 Destroy(gameObject);
                 break;
             case "Wall":
-                //efeito
-                //som
+                Destroy(gameObject);
                 break;
         }
     }

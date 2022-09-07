@@ -22,6 +22,7 @@ public class GameManager : MonoBehaviour
 
     [HideInInspector] public GameData_SO playerLives;
 
+    public int Score = 0;
 
     private void Awake()
     {
@@ -36,16 +37,30 @@ public class GameManager : MonoBehaviour
 
         playerLives = Resources.Load("PlayerLives") as GameData_SO;
         DontDestroyOnLoad(gameObject);
+        Score = playerLives.Score;
     }
-
     int DeadEnemyCount = 0;
+
+
+    public void DeadEnemyCounterToZero()
+    {
+        DeadEnemyCount = 0;
+        Score = 0;
+    }
 
     public void SetDeadCount()
     {
         DeadEnemyCount++;
+        Score = CalculateScore();
     }
+
     public int GetDeadCount()
     {
         return DeadEnemyCount;
+    }
+
+    public int CalculateScore()
+    {
+        return DeadEnemyCount * 100;
     }
 }

@@ -36,7 +36,7 @@ public class EnemySpawner : MonoBehaviour
         }
         if(EnemyCount == MaxEnemy)
         {
-            Destroy(gameObject);
+            //Destroy(gameObject);
         }
     }
 }
